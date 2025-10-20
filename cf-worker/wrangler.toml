@@ -1,0 +1,4 @@
+name = "asu-mistral-relay"
+main = "src/worker.js"
+compatibility_date = "2024-10-01"
+account_id = "93a5a57f7481eecc66a6d214250acc3d"

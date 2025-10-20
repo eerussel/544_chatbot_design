@@ -1,0 +1,131 @@
+:root{
+  --asu-maroon:#8C1D40; /* ASU maroon */
+  --asu-gold:#FFC627;   /* ASU gold */
+  --asu-black:#000;
+  --asu-white:#fff;
+  --bg:#faf9f7;
+  --text:#1f1f1f;
+  --muted:#6b6b6b;
+  --card:#ffffff;
+  --ring:rgba(140,29,64,0.3);
+  --radius:14px;
+  --shadow:0 6px 18px rgba(0,0,0,.07);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: "Roboto", Arial, sans-serif;
+  color:var(--text);
+  background:var(--bg);
+}
+
+/* App bar */
+.asu-appbar{
+  background:var(--asu-maroon);
+  color:var(--asu-white);
+  position:sticky; top:0; z-index:100;
+  box-shadow:var(--shadow);
+}
+.asu-container{
+  width:min(1100px, 92%);
+  margin-inline:auto;
+  padding:14px 10px;
+  display:flex; align-items:center; gap:14px;
+  justify-content:space-between;
+}
+.asu-logo{
+  font-family:"Roboto Condensed", Arial, sans-serif;
+  letter-spacing:.3px;
+  font-size:1.25rem; font-weight:700;
+}
+.asu-actions .asu-link{
+  color:var(--asu-gold); text-decoration:none; font-weight:500; margin-left:14px;
+}
+.asu-actions .asu-link:hover{ text-decoration:underline }
+
+/* Layout */
+.asu-main{ display:grid; grid-template-columns:280px 1fr; gap:18px; padding-block:18px; }
+@media (max-width: 880px){
+  .asu-main{ grid-template-columns:1fr }
+}
+
+/* Panel */
+.panel{
+  background:var(--card);
+  border-radius:var(--radius);
+  padding:16px;
+  box-shadow:var(--shadow);
+}
+.panel-title{
+  margin:6px 0 8px; font-size:1rem; font-weight:700; color:var(--asu-maroon);
+}
+.chip-group{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:12px; }
+.chip{
+  background:var(--asu-gold);
+  border:none; border-radius:999px; padding:8px 12px;
+  font-weight:600; cursor:pointer;
+}
+.chip:hover{ filter:brightness(.95) }
+.filters{ display:grid; gap:10px; margin:8px 0 14px }
+.filters label{ display:grid; gap:6px; font-size:.92rem }
+.filters select{
+  padding:10px; border-radius:10px; border:1px solid #ddd; outline:none;
+}
+.filters select:focus{ box-shadow:0 0 0 3px var(--ring); border-color:var(--asu-maroon) }
+
+.note{
+  font-size:.85rem; color:var(--muted);
+  border:1px dashed #ddd; border-radius:12px; padding:10px;
+}
+
+/* Chat */
+.chat{
+  display:flex; flex-direction:column; gap:12px;
+}
+.messages{
+  background:var(--card);
+  border-radius:var(--radius);
+  padding:14px;
+  box-shadow:var(--shadow);
+  min-height:340px; max-height:60vh; overflow:auto;
+}
+
+.msg{ display:flex; gap:10px; margin:8px 0; align-items:flex-start }
+.msg .bubble{
+  padding:10px 12px; border-radius:14px; box-shadow:0 1px 2px rgba(0,0,0,.04);
+  line-height:1.45;
+}
+.msg.user .bubble{
+  background:var(--asu-maroon); color:var(--asu-white); border-bottom-right-radius:4px;
+}
+.msg.bot .bubble{
+  background:#f5f1f2; border:1px solid #eee; border-bottom-left-radius:4px;
+}
+.msg .title{ font-weight:700; margin-bottom:4px }
+.msg ul{ margin:6px 0 0 18px }
+.msg a{ color:var(--asu-maroon); text-decoration:underline }
+
+.composer{
+  display:flex; gap:10px; align-items:center;
+}
+.input{
+  flex:1; padding:14px 16px; border-radius:12px;
+  border:1px solid #ddd; outline:none; background:#fff;
+}
+.input:focus{ border-color:var(--asu-maroon); box-shadow:0 0 0 3px var(--ring) }
+.send{
+  background:var(--asu-gold); color:#3b2a00;
+  border:none; border-radius:12px; padding:12px 16px; font-weight:700; cursor:pointer;
+}
+.send:hover{ filter:brightness(.97) }
+
+/* Little “card list” inside bot replies */
+.rec-list{ display:grid; gap:10px; margin-top:8px }
+.rec{
+  border:1px solid #eee; border-radius:12px; padding:10px; background:#fff;
+}
+.rec .name{ font-weight:700 }
+.rec .meta{ font-size:.9rem; color:#555 }
+.tag{ display:inline-block; background:#f0f0f0; border-radius:999px; padding:4px 8px; margin:4px 6px 0 0; font-size:.8rem }

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ASU Major Finder</title>
+
+  <!-- Google Fonts (Roboto as primary web font) -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Condensed:wght@600&display=swap" rel="stylesheet">
+
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <!-- Top brand bar -->
+  <header class="asu-appbar">
+    <div class="asu-container">
+      <div class="asu-logo">ASU Major Finder</div>
+      <nav class="asu-actions">
+        <a class="asu-link" href="https://degrees.apps.asu.edu/bachelors/major-list/letter/all" target="_blank" rel="noopener">All majors</a>
+        <a class="asu-link" href="https://brandguide.asu.edu/" target="_blank" rel="noopener">ASU Brand</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main layout -->
+  <main class="asu-main asu-container">
+    <aside class="panel">
+      <h2 class="panel-title">Quick interests</h2>
+      <div id="chips" class="chip-group">
+        <button class="chip">psychology + people</button>
+        <button class="chip">business + marketing</button>
+        <button class="chip">coding + problem solving</button>
+        <button class="chip">biology + healthcare</button>
+        <button class="chip">design + creativity</button>
+        <button class="chip">writing + media</button>
+        <button class="chip">math + data</button>
+      </div>
+
+      <h2 class="panel-title">Filters</h2>
+      <div class="filters">
+        <label>Campus
+          <select id="filterCampus">
+            <option value="">Any</option>
+            <option>Tempe</option>
+            <option>Polytechnic</option>
+            <option>West</option>
+            <option>Downtown Phoenix</option>
+            <option>West Valley</option>
+            <option>Lake Havasu</option>
+            <option>Online</option>
+          </select>
+        </label>
+        <label>Degree type
+          <select id="filterDegree">
+            <option value="">Any</option>
+            <option>BA</option>
+            <option>BS</option>
+            <option>BFA</option>
+            <option>BSE</option>
+            <option>BAS</option>
+            <option>BMus</option>
+            <option>BLA</option>
+            <option>BIS</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="note">
+        Guidance only — always confirm with an ASU advisor. Sources: ASU Degree Search.
+      </div>
+    </aside>
+
+    <section class="chat">
+      <div id="messages" class="messages" aria-live="polite"></div>
+
+      <form id="composer" class="composer">
+        <input id="input" class="input" placeholder="Tell me what you enjoy or what you’re good at…" autocomplete="off" />
+        <button class="send" type="submit">Send</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="asu-footer">
+    <div class="asu-container">
+      <small>© <span id="year"></span> ASU Major Finder (demo). Erin Russell-Mann.</small>
+    </div>
+  </footer>
+
+  <script src="./script.js"></script>
+</body>
+</html>
+

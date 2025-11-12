@@ -45,13 +45,15 @@ function user(text){
   const div = document.createElement("div");
   div.className = "msg user";
   div.innerHTML = `<div class="bubble">${escapeHtml(text)}</div>`;
-  el.msgs.appendChild(div); scrollToEnd();
+  el.msgs.appendChild(div);
+  scrollToEnd();
 }
 function bot(html){
   const div = document.createElement("div");
   div.className = "msg bot";
   div.innerHTML = `<div class="bubble">${html}</div>`;
-  el.msgs.appendChild(div); scrollToEnd();
+  el.msgs.appendChild(div);
+  scrollToEnd();
 }
 function escapeHtml(s){ return String(s).replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
 
@@ -164,7 +166,29 @@ async function getReply(userText, ctx) {
 function replyToHtml(text /*, ctx */) {
   return String(text)
     .replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]))
-    .replace(/\n{2,}/g, "<br><br>");
+    .replace(/\n{2,}/g, "<br><br>")
+    .replace(/\n/g, "<br>"); // Add this line to convert single newlines to <br>
+}
+
+// ========= Thinking indicator =========
+function showThinking() {
+  const div = document.createElement("div");
+  div.className = "msg bot";
+  div.innerHTML = `<div class="bubble thinking">
+    <span>🤔</span> Thinking<span class="dots">...</span>
+  </div>`;
+  el.msgs.appendChild(div);
+  scrollToEnd();
+  
+  // Animate dots
+  let dots = 0;
+  const interval = setInterval(() => {
+    dots = (dots + 1) % 4;
+    const dotsSpan = div.querySelector('.dots');
+    if (dotsSpan) dotsSpan.textContent = '.'.repeat(dots);
+  }, 500);
+  
+  return { el: div, stop: () => clearInterval(interval) };
 }
 
 // ========= Submit handler (uses getReply) =========
@@ -181,7 +205,10 @@ el.form.addEventListener("submit", async (e) => {
   const ctx = findRelevantMajors(text, { campus, degree });
   lastContext = ctx;
 
+  const thinking = showThinking();
   const replyHtml = await getReply(text, ctx);
+  thinking.stop();
+  thinking.el.remove();
   bot(replyHtml);
 });
 
